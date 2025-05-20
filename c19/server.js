@@ -1,15 +1,23 @@
 const http = require('http')
 
 const fs = require('fs')
+const { log } = require('console')
 
 const index = fs.readFileSync('index.html', 'utf-8')
 
 const add = fs.readFileSync('add.html', 'utf-8')
 
-const data = fs.readFileSync('data.json', 'utf-8')
+const data = require('../c19/data.json')
+
+const css = fs.readFileSync('style.css', 'utf-8')
+
+
+const querystring = require('querystring');
 
 http.createServer(function (req, res) {
-	res.writeHead(200, { "Content-type": "text/html" })
+
+	console.log(req.method);
+
 
 	switch (req.url) {
 		case '/':
@@ -29,7 +37,7 @@ http.createServer(function (req, res) {
                         <td>${item.birthdate}</td>
                         <td>${item.married}</td>
                         <td>
-                            <a href="">edit</a>
+                            <a href="">update</a>
                             <a href="">delete</a>
                         </td>
                     </tr>
@@ -42,8 +50,41 @@ http.createServer(function (req, res) {
 			})
 			break;
 		case '/add':
-			res.end(add)
+			if (req.method == 'POST') {
+				let body = '';
+				req.on('data', chunk => {
+					body += chunk.toString(); // Accumulate the request body data
+				});
+				req.on('end', () => {
+					const params = querystring.parse(body)
+
+					const hasil = ({
+						name: params.name,
+						height: Number(params.height),
+						weight: Number(params.weight),
+						birthdate: params.birthdate,
+						married: params.married === 'true'
+					})
+
+					data.push(hasil)
+					fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+						res.writeHead(300, { 'location': 'http://localhost:3000/' })
+						res.end()
+					})
+
+
+				});
+			} else {
+
+				res.end(add)
+			}
 			break;
+
+		case '/style.css':
+			res.writeHead(200, { "Content-Type": "text/css" });
+			res.end(css);
+			break;
+
 		default:
 			res.end('404 error')
 	}
