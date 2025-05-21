@@ -9,7 +9,7 @@
   {
     "name": "Rahmat",
     "height": 171,
-    "weight": 57.6899,
+    "weight": 57.699,
     "birthdate": "1996-11-03",
     "married": true
   },
@@ -25,6 +25,34 @@
     "height": 7,
     "weight": 8,
     "birthdate": "2025-05-08",
+    "married": false
+  },
+  {
+    "name": "iqbal",
+    "height": 5,
+    "weight": 5,
+    "birthdate": "2025-05-08",
+    "married": false
+  },
+  {
+    "name": "asep galon",
+    "height": 4,
+    "weight": 4,
+    "birthdate": "2025-05-08",
+    "married": false
+  },
+  {
+    "name": "burhan",
+    "height": 4,
+    "weight": 13,
+    "birthdate": "2025-05-08",
+    "married": false
+  },
+  {
+    "name": "jamal",
+    "height": 6,
+    "weight": 60.021,
+    "birthdate": "2025-05-01",
     "married": false
   }
 ]

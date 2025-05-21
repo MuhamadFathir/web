@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="form">
+    <form action="" method="post">
+
+        <input type="text" name="name" placeholder="insert your name" value="{name}">
+
+        <input type="number" name="height" placeholder="insert your height" value="{height}">
+
+        <input type="number" name="weight" placeholder="insert your weight" value="{weight}" step="0.001">
+
+        <input type="date" name="birthdate" value="{birthdate}">
+
+        <select id="married" name="married">
+            <option value="{married}" disabled selected hidden>have you Married?</option>
+            <option value="true">yes</option>
+            <option value="false">no</option>
+          </select>
+
+        <input type="submit" value="Save">
+
+        
+
+        <a href="/">
+            <input type="button" value="Go to Example">
+        </a>
+
+</body>
+
+</form>
+
+</html>
