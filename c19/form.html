@@ -4,33 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data</title>
+    <title>{title}</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body id="form">
     <form action="" method="post">
 
-        <input type="text" name="name" placeholder="insert your name" value="{name}">
+        <input type="text" name="name" placeholder="insert your name" value="{name}" required>
 
         <input type="number" name="height" placeholder="insert your height" value="{height}">
 
         <input type="number" name="weight" placeholder="insert your weight" value="{weight}" step="0.001">
 
-        <input type="date" name="birthdate" value="{birthdate}">
+        <input type="date" name="birthdate" value="{birthdate}" required>
 
-        <select id="married" name="married">
-            <option value="{married}" disabled selected hidden>have you Married?</option>
-            <option value="true">yes</option>
-            <option value="false">no</option>
+        <select id="married" name="married" required>
+            <option value="">have you Married?</option>
+            {married}
           </select>
 
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" class="save">
 
         
 
         <a href="/">
-            <input type="button" value="Go to Example">
+            <input type="button" value="Cancle" class="cancle">
         </a>
 
 </body>

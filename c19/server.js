@@ -7,7 +7,7 @@ const index = fs.readFileSync('index.html', 'utf-8')
 
 const form = fs.readFileSync('form.html', 'utf-8')
 
-const data = require('../c19/data.json')
+const data = require('./data.json')
 
 const url = require('url')
 
@@ -17,9 +17,6 @@ const css = fs.readFileSync('style.css', 'utf-8')
 const querystring = require('querystring');
 
 http.createServer(function (req, res) {
-
-
-	console.log(req.url);
 
 	if (req.url == '/') {
 
@@ -31,16 +28,16 @@ http.createServer(function (req, res) {
 
 			value.forEach((item, index) => {
 				html += `
-					<tr>
+					<tr id="content">
                         <td>${index + 1}</td>
                         <td>${item.name}</td>
                         <td>${item.height}</td>
                         <td>${item.weight}</td>
                         <td>${item.birthdate}</td>
-                        <td>${item.married}</td>
+                        <td>${item.married ? 'Yes' : 'Not Yet'}</td>
                         <td>
-							<a href="/update?id=${index + 1}">update</a>
-							<a href="/delete?id=${index + 1}">delete</a>
+							<a href="/edit?id=${index + 1}">update</a>
+							<a href="/delete?id=${index + 1}" onclick="return confirm('apakah anda ingin menghapus ${item.name}')">delete</a>
                         </td>
 					</tr>
 						`
@@ -65,7 +62,7 @@ http.createServer(function (req, res) {
 					height: Number(params.height),
 					weight: Number(params.weight),
 					birthdate: params.birthdate,
-					married: params.married === 'true'
+					married: JSON.parse(params.married)
 				})
 
 				data.push(hasil)
@@ -77,11 +74,15 @@ http.createServer(function (req, res) {
 			});
 		} else {
 			res.writeHead(200, { "Content-Type": "text/html" })
-			res.end(form.replace('{name}', ''));
+			res.end(form.replace('{name}', '').replace('{married}', `
+				<option value="true">Yes</option>
+				<option value="false">Not Yet</option>
+				`).replace('{title}', 'Create Data'));
 		}
 	} else if (req.url.startsWith('/delete')) {
 
 		const params = querystring.parse(url.parse(req.url).query)
+
 
 		data.splice(params.id - 1, 1)
 
@@ -90,7 +91,7 @@ http.createServer(function (req, res) {
 			res.writeHead(302, { 'location': '/' });
 			res.end();
 		})
-	} else if (req.url.startsWith('/update')) {
+	} else if (req.url.startsWith('/edit')) {
 		const { id } = querystring.parse(url.parse(req.url).query)
 		if (req.method == 'POST') {
 			let body = '';
@@ -105,8 +106,9 @@ http.createServer(function (req, res) {
 					height: Number(params.height),
 					weight: Number(params.weight),
 					birthdate: params.birthdate,
-					married: params.married === 'true'
+					married: JSON.parse(params.married)
 				})
+				console.log(params.married)
 
 				data[id - 1] = hasil
 				fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
@@ -122,7 +124,20 @@ http.createServer(function (req, res) {
 
 
 				res.writeHead(200, { "Content-Type": "text/html" })
-				res.end(form.replace('{name}', data[id - 1].name).replace('{height}', data[id - 1].height).replace('{weight}', data[id - 1].weight).replace('{birthdate}', data[id - 1].birthdate).replace('{married}', data[id - 1].married));
+				let html = form.replace('{name}', data[id - 1].name).replace('{height}', data[id - 1].height).replace('{weight}', data[id - 1].weight).replace('{birthdate}', data[id - 1].birthdate).replace('{title}', 'Update Data')
+				if (data[id - 1].married) {
+					html = html.replace('{married}', `
+						<option value="true" selected>Yes</option>
+            			<option value="false">Not Yet</option>
+						`)
+				} else {
+					html = html.replace('{married}', `
+						<option value="true">Yes</option>
+            			<option value="false" selected>Not Yet</option>
+						`)
+				}
+				res.end(html);
+
 			})
 		}
 	} else if (req.url == '/style.css') {
@@ -136,4 +151,6 @@ http.createServer(function (req, res) {
 
 
 }).listen(3000);
+
+
 

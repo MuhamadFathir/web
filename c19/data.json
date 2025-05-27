@@ -1,58 +1,16 @@
 [
   {
-    "name": "Himawan",
-    "height": 168,
-    "weight": 80.52,
-    "birthdate": "1991-3-12",
-    "married": false
-  },
-  {
-    "name": "Rahmat",
-    "height": 171,
-    "weight": 57.699,
-    "birthdate": "1996-11-03",
-    "married": true
-  },
-  {
-    "name": "Aziz",
-    "height": 167,
-    "weight": 57.5,
-    "birthdate": "1996-05-13",
-    "married": false
-  },
-  {
-    "name": "fathir",
-    "height": 7,
-    "weight": 8,
-    "birthdate": "2025-05-08",
-    "married": false
-  },
-  {
-    "name": "iqbal",
-    "height": 5,
-    "weight": 5,
-    "birthdate": "2025-05-08",
-    "married": false
-  },
-  {
-    "name": "asep galon",
-    "height": 4,
-    "weight": 4,
-    "birthdate": "2025-05-08",
+    "name": "amin",
+    "height": 170,
+    "weight": 66.5,
+    "birthdate": "1994-04-01",
     "married": false
   },
   {
     "name": "burhan",
-    "height": 4,
-    "weight": 13,
-    "birthdate": "2025-05-08",
-    "married": false
-  },
-  {
-    "name": "jamal",
-    "height": 6,
-    "weight": 60.021,
-    "birthdate": "2025-05-01",
+    "height": 170,
+    "weight": 69.7,
+    "birthdate": "2002-08-09",
     "married": false
   }
 ]

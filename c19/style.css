@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -7,20 +7,66 @@ body {
 }
 
 #Create {
-        background-color: blue;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        width: 100%;
-        border-radius: 10px;
+    background-color: blue;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
 }
 
-#table{
-    border: 1px solid black;
+
+table {
+    border: 1px solid;
     border-collapse: collapse;
+    border-color: rgb(226, 223, 223);
+    border-color: rgb(226, 223, 223);
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+th,
+td {
+    text-align: left;
+    padding: 20px;
+}
+
+
+#content:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid blue;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.save {
+    background-color: green;
+    color: white;
+    border: 2px solid green;
+}
+
+.cancle {
+    background-color: blue;
+    color: white;
+    border: 2px solid blue;
 }
